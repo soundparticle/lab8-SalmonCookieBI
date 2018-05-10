@@ -1,4 +1,5 @@
 /* exported locationList */
+
 // class constructor 
 class CookieLocation {
     constructor(location, hours, minCustPerHr, maxCustPerHr, avgSoldPerCust) {
@@ -10,16 +11,14 @@ class CookieLocation {
         
     }
 // returns total cookies needed per hour
-    totalSold() {
+    totalNeeded() {
         return Math.floor(Math.random(this.minCustPerHr) * Math.floor(this.maxCustPerHr)) * this.avgSoldPerCust;
         
     }
 
-
 }
 // instantiating objects
-let testLocation = new CookieLocation('acl', 10, 5, 25, 3);
-let test = testLocation.totalSold();
+let testLocation = new CookieLocation('acl', [6, 7, 8, 9, 10, 11, 12, 1, 2, 3, 4, 5, 6, 7, 8], 5, 25, 3);
 
 // locations array
 const locationList = [testLocation];
