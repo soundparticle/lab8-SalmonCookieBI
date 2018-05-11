@@ -8,14 +8,25 @@ for(var i = 0; i < locationList.length; i++) {
     tRow.id = 'tr-' + i.toString();
     tBody.appendChild(tRow);
     locationData(i);
+    hoursOpen(i);
 }
 
 
-function locationData(j) {
-    for(var j = 0; j < locationList.length; j++) {
-        let tRow = document.querySelector('#tr-' + j.toString());
-        let tData = document.createElement('td');
-        tRow.appendChild(tData);
-        tRow.textContent = locationList[j].location; 
-   }
+function locationData(i) {
+    
+    let tRow = document.querySelector('#tr-' + i.toString());
+    let tData = document.createElement('td');
+    tRow.appendChild(tData);
+    tData.textContent = locationList[i].location;
+    
+}
+function hoursOpen(i) { 
+    
+    let tRow = document.querySelector('#tr-' + i.toString());
+    let tData = document.createElement('td');
+    tRow.appendChild(tData);
+    tData.textContent = locationList[i].totalNeeded();
+    
+
+
 }
