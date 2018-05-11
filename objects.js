@@ -2,23 +2,26 @@
 
 // class constructor 
 class CookieLocation {
-    constructor(location, hours, minCustPerHr, maxCustPerHr, avgSoldPerCust) {
+    constructor(location, minCustPerHr, maxCustPerHr, avgSoldPerCust) {
         this.location = location;
-        this.hours = hours;
         this.minCustPerHr = minCustPerHr;
         this.maxCustPerHr = maxCustPerHr;
         this.avgSoldPerCust = avgSoldPerCust;
         
     }
-// returns total cookies needed per hour
+    // returns total cookies needed per hour
     totalNeeded() {
-        return Math.floor(Math.random(this.minCustPerHr) * Math.floor(this.maxCustPerHr)) * this.avgSoldPerCust;
-        
+        const min = Math.ceil(this.minCustPerHr);
+        const max = Math.floor(this.maxCustPerHr);
+        return Math.floor(Math.random() * (max - min + 1)) + min;
     }
-
 }
 // instantiating objects
-let testLocation = new CookieLocation('acl', [6, 7, 8, 9, 10, 11, 12, 1, 2, 3, 4, 5, 6, 7, 8], 5, 25, 3);
+let pdxAirport = new CookieLocation('PDX Airport', 23, 65, 6.3);
+let pioneerSquare = new CookieLocation('Pioneer Square', 3, 24, 1.2);
+let powells = new CookieLocation('Powells', 11, 38, 3.7);
+let stJohns = new CookieLocation('St. Johns', 20, 38, 2.3);
+let waterfront = new CookieLocation('Waterfront', 2, 16, 4.6);
 
 // locations array
-const locationList = [testLocation];
+const locationList = [pdxAirport, pioneerSquare, powells, stJohns, waterfront];
