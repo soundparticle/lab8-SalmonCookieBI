@@ -3,23 +3,24 @@
 // cookiesPerHour stores data for number of cookies needed per hour
 let cookiesPerHour = [];
 
-// let hours = ['6:00', '7:00', '8:00', '9:00', '10:00', '11:00', '12:00'];
-
-for(var i = 0; i < locationList.length; i++) {
-    let tBody = document.querySelector('tbody');
-    let tRow = document.createElement('tr');
-    tRow.id = 'tr-' + i.toString();
-    tBody.appendChild(tRow);
-    locationName(i);
-    cookiesNeededPerHour(i);
-    //hoursOfOperation(i);
+function superFunction() {
+    let body = document.querySelector('tbody');
+    body.textContent = '';
+    for(var i = 0; i < locationList.length; i++) {
+        let tBody = document.querySelector('tbody');
+        let tRow = document.createElement('tr');
+        tRow.id = 'tr-' + i.toString();
+        tBody.appendChild(tRow);
+        locationName(i, locationList);
+        cookiesNeededPerHour(i, locationList);
+    }
 }
 
 // inserts location name of each cookie shop in table
-function locationName(i) {
+function locationName(i, array) {
     let tRow = document.querySelector('#tr-' + i.toString());
     let tData = document.createElement('td');
-    tData.textContent = locationList[i].location;  
+    tData.textContent = array[i].location;
     tRow.appendChild(tData);
 }
 
@@ -34,29 +35,31 @@ function cookiesNeededPerHour(i) {
     }
 }
 
+function newCookieInfo(e) {
+    e.preventDefault();
+    const location = e.target.location.value;
+    const min = Number(e.target.min.value);
+    const max = Number(e.target.max.value);
+    const avgcookies = Number(e.target.cookies.value);
+    
+    const newObject = new CookieLocation(location, min, max, avgcookies);
+    locationList.push(newObject);
+    superFunction(locationList);
+    //const newObjectArray = [newObject];
+    //superFunction(newObjectArray);
+    
+}
+const cookieShop = document.getElementById('cookie-shop');
+cookieShop.addEventListener('submit', newCookieInfo);
 
-document.addEventListener(submit, function);
+superFunction(locationList);
 
 
 
 
 
-/*
-function hoursOfOperation(i) {
-    for(var k = 0; k < locationList[i].hours.length; k++) {
-        let tRow = document.querySelector('#cookie-header');
-        let tHeader = document.createElement('th');
-        
-        if(hours[k].includes(locationList[i].hours[k])) {
-            tHeader.textContent = locationList[i].hours[k];
-            tRow.appendChild(tHeader);
-        }
-        else {
-            tHeader.textContent = 'CLOSED';
-            tRow.appendChild(tHeader);
-        }
-    }
-} */
+
+
 
 
 
