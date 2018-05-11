@@ -34,6 +34,13 @@ function cookiesNeededPerHour(i) {
     }
 }
 
+
+document.addEventListener(submit, function);
+
+
+
+
+
 /*
 function hoursOfOperation(i) {
     for(var k = 0; k < locationList[i].hours.length; k++) {
