@@ -2,7 +2,7 @@
 
 // class constructor 
 class CookieLocation {
-    constructor(location, minCustPerHr, maxCustPerHr, avgSoldPerCust) {
+    constructor(location, hours, minCustPerHr, maxCustPerHr, avgSoldPerCust) {
         this.location = location;
         this.minCustPerHr = minCustPerHr;
         this.maxCustPerHr = maxCustPerHr;
@@ -23,5 +23,5 @@ let powells = new CookieLocation('Powells', 11, 38, 3.7);
 let stJohns = new CookieLocation('St. Johns', 20, 38, 2.3);
 let waterfront = new CookieLocation('Waterfront', 2, 16, 4.6);
 
-// locations array
+// An array of all our objects
 const locationList = [pdxAirport, pioneerSquare, powells, stJohns, waterfront];
