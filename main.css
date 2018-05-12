@@ -1,0 +1,53 @@
+body {
+    background-image: url("images/sunset.jpeg");
+    background-position:center;
+}
+h1 {
+    text-align: center;
+    font-family: Georgia;
+    font-size: 40pt
+}
+img {
+display: block;
+margin: 0px auto;
+max-width: 30%;
+max-height: 30%;
+}
+h2 {
+    font-size: 20pt;
+    font-family: palatino;
+}
+div.beginnings {
+    position: relative;
+    top: 10px 100px;
+    height: 300px;
+    width: 400px;
+    margin: 10px;
+    padding: 10px;       
+    border: 2px solid black; 
+    border-radius: 60px;
+}
+
+
+
+div.cookies {
+    position: relative;
+    top: 10px 100px;
+    height: 300px;
+    width: 400px;
+    float: right;
+    margin: 40px;
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 60px;
+   
+}
+
+p {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 14pt;
+    box-align: left;
+    position: relative;
+    top: 20px;
+    bottom: 100px;
+}
