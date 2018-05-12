@@ -18,6 +18,7 @@ hr {
 }
 
 img.pics2 {
+box-shadow: 2px 5px 40px 5px rgb(96, 39, 39);      
 display: block;
 border: 3px solid;
 border-radius: 800px;
