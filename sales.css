@@ -1,5 +1,5 @@
 body {
-    background-image: url(./images/coffee_beans_white_low_cont.jpeg);
+    background-image: url(./images/sunset.jpeg);
 }
 
 h1 {
@@ -22,11 +22,12 @@ img{
     display: flex;
     justify-content: center;
 }
+
 table {
     border-collapse: collapse;
     background-color: black;
-    opacity: .80;
-    color: lightsteelblue;
+    opacity: .75;
+    color: lightgoldenrodyellow;
     font-size: 20px;
 }
 

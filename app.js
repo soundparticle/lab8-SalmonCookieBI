@@ -15,8 +15,12 @@ function cookieBI(array) {
         const tBody = document.querySelector('tbody');
         const tRow = document.createElement('tr');
         tRow.id = 'tr-' + cookieShop.toString();
-        tRow.textContent = array[i].location;
         tBody.appendChild(tRow);
+        
+        const newRow = document.querySelector('#tr-' + cookieShop);
+        const locationCell = document.createElement('td');
+        locationCell.textContent = array[i].location;
+        newRow.appendChild(locationCell);
         
         // inserts the number of cookies needed per hour per shop
         for(let j = 0; j < operationHrs.length; j++) {
