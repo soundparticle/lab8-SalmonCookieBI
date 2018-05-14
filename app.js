@@ -1,58 +1,71 @@
 /* globals locationList */
 
-// cookiesPerHour stores data for number of cookies needed per hour
-let cookiesPerHour = [];
+const operationHrs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+const rowTotal = [];
+let columnTotal = [];
+let cookieShop = 0;
 
-function superFunction() {
-    let body = document.querySelector('tbody');
-    body.textContent = '';
-    for(var i = 0; i < locationList.length; i++) {
-        let tBody = document.querySelector('tbody');
-        let tRow = document.createElement('tr');
-        tRow.id = 'tr-' + i.toString();
+// used to calculate total # of cookies within array rowTotal and columnTotal
+const sum = (accumulator, currentValue) => accumulator + currentValue;
+
+// 
+function cookieBI(array) {
+    // inserts location of each cookie shop in table
+    for(let i = 0; i < array.length; i++) {
+        const tBody = document.querySelector('tbody');
+        const tRow = document.createElement('tr');
+        tRow.id = 'tr-' + cookieShop.toString();
+        tRow.textContent = array[i].location;
         tBody.appendChild(tRow);
-        locationName(i, locationList);
-        cookiesNeededPerHour(i, locationList);
+        
+        // inserts the number of cookies needed per hour per shop
+        for(let j = 0; j < operationHrs.length; j++) {
+            const tRow = document.querySelector('#tr-' + cookieShop.toString());
+            const tCell = document.createElement('td');
+            tCell.classList = 'td-' + j.toString();
+            const cookiesPerHr = Math.round(array[i].totalNeeded());
+            rowTotal[j] = cookiesPerHr;
+            tCell.textContent = cookiesPerHr;
+            tRow.appendChild(tCell);
+
+            // inserts the total # of cookies needed per day per shop
+            if(j === operationHrs.length - 1) {
+                const totalPerDay = document.createElement('td');
+                totalPerDay.classList = 'td-' + (j + 1).toString();
+                totalPerDay.textContent = rowTotal.reduce(sum);
+                tRow.appendChild(totalPerDay);
+            }
+        }
+        // keeps count of the # of cookie shops we have
+        cookieShop++;
+    }
+
+    // inserts total number of cookies needed between all shops per hour
+    for(let i = 0; i < operationHrs.length + 1; i++) {
+        for(let k = 0; k < document.querySelectorAll('.td-' + i).length; k++) {
+            columnTotal[k] = parseInt(document.querySelectorAll('.td-' + i)[k].innerText);
+        }
+
+        document.getElementById('tf-' + i.toString()).innerText = columnTotal.reduce(sum);
     }
 }
+// initiates table on page load
+cookieBI(locationList);
 
-// inserts location name of each cookie shop in table
-function locationName(i, array) {
-    let tRow = document.querySelector('#tr-' + i.toString());
-    let tData = document.createElement('td');
-    tData.textContent = array[i].location;
-    tRow.appendChild(tData);
-}
-
-// inserts number of cookies needed per hour for each cookie location. 
-function cookiesNeededPerHour(i) {
-    for(var j = 0; j < 15; j++) {
-        let tRow = document.querySelector('#tr-' + i.toString());
-        let tData = document.createElement('td');
-        cookiesPerHour[j] = locationList[i].totalNeeded();
-        tData.textContent = Math.round(cookiesPerHour[j]);
-        tRow.appendChild(tData);
-    }
-}
-
-function newCookieInfo(e) {
+function newCookieLocation(e) {
     e.preventDefault();
     const location = e.target.location.value;
-    const min = Number(e.target.min.value);
-    const max = Number(e.target.max.value);
-    const avgcookies = Number(e.target.cookies.value);
+    const min = parseInt(e.target.min.value);
+    const max = parseInt(e.target.max.value);
+    const avgcookies = parseInt(e.target.cookies.value);
     
     const newObject = new CookieLocation(location, min, max, avgcookies);
-    locationList.push(newObject);
-    superFunction(locationList);
-    //const newObjectArray = [newObject];
-    //superFunction(newObjectArray);
-    
-}
-const cookieShop = document.getElementById('cookie-shop');
-cookieShop.addEventListener('submit', newCookieInfo);
+    const newArray = [newObject];
+    cookieBI(newArray);
 
-superFunction(locationList);
+}
+const newCookieShop = document.getElementById('cookie-form');
+newCookieShop.addEventListener('submit', newCookieLocation);
 
 
 

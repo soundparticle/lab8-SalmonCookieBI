@@ -89,6 +89,7 @@ address {
     position: bottom;
     text-align: bottom;
     line-height: .5em;
+    margin: 20px;
 }
 
 p.location {
@@ -103,4 +104,9 @@ footer {
     bottom: 0;
     width: 100%;
     text-align: bottom;
+}
+
+#addresses {
+    display: flex;
+    justify-content: center;
 }
